@@ -1,9 +1,9 @@
 import React, {useState, useRef} from 'react'
 import VideoHeader from './VideoHeader'
 import './VideoCard.css'  
-import vikings from './Crazy.mp4'
+import VideoFooter from './VideoFooter'
 
-function VideoCard() {
+function VideoCard({ url, likes, shares, channel, avatarSrc, song }) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const videoRef = useRef(null)
 
@@ -24,14 +24,20 @@ function VideoCard() {
     <div className='videoCard'>
       <VideoHeader />
       <video 
-        src={vikings} 
+        src={url} 
         ref={videoRef}
         onClick={onVideoPress}
         className="videoCard__player"
         alt='Gramstok reel video'
         loop
       />
-{/* <iframe className="videoCard__player" src="https://www.youtube.com/embed/tUDHfDPk-kg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+      <VideoFooter 
+        shares={shares}  
+        like={likes}
+        channel={channel}
+        avatarSrc={avatarSrc}
+        song={song}
+      />
     </div>
   )
 }
